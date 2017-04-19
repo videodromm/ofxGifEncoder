@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ofxGifEncoder.cpp">
+      <Filter>addons\ofxGifEncoder\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{cf1621c4-8f5e-4ca3-8844-7900c594d427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxGifEncoder">
+      <UniqueIdentifier>{507a64e9-dd8d-495e-bee7-5e985448814a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxGifEncoder\src">
+      <UniqueIdentifier>{d2186a6f-d7d8-4897-8642-44dc10d23448}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ofxGifDitherTypes.h">
+      <Filter>addons\ofxGifEncoder\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ofxGifEncoder.h">
+      <Filter>addons\ofxGifEncoder\src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
