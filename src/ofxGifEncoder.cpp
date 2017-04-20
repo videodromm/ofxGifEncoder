@@ -53,16 +53,16 @@ void ofxGifEncoder::addFrame(ofImage & img, float _duration) {
         return;
     }
     
-    addFrame(img.getPixels(), w, h, img.getPixels().getBitsPerPixel(),  _duration);
+    addFrame((unsigned char *)&img.getPixelsRef(), w, h, img.getPixels().getBitsPerPixel(),  _duration);
 }
 
-void ofxGifEncoder::addFrame(unsigned char *px, int _w, int _h, int _bitsPerPixel, float _duration) {
+void ofxGifEncoder::addFrame(unsigned char *px, int _w, int _h, int _bitsPerPixel, float duration) {
     if(_w != w || _h != h) {
         ofLog(OF_LOG_WARNING, "ofxGifEncoder::addFrame image dimensions don't match, skipping frame");
         return;
     }
     
-    float tempDuration = _duration;
+    float tempDuration = duration;
     if (tempDuration == 0.f) tempDuration = frameDuration; 
     
     nChannels = 0;
@@ -80,6 +80,31 @@ void ofxGifEncoder::addFrame(unsigned char *px, int _w, int _h, int _bitsPerPixe
     memcpy(temp, px, w * h * nChannels);
     ofxGifFrame * gifFrame   = ofxGifEncoder::createGifFrame(temp, w, h, _bitsPerPixel, tempDuration) ;
     frames.push_back(gifFrame);
+}
+void ofxGifEncoder::addFramePx(ofPixels * px, int _w, int _h, int _bitsPerPixel, float duration) {
+	if (_w != w || _h != h) {
+		ofLog(OF_LOG_WARNING, "ofxGifEncoder::addFrame image dimensions don't match, skipping frame");
+		return;
+	}
+
+	float tempDuration = duration;
+	if (tempDuration == 0.f) tempDuration = frameDuration;
+
+	nChannels = 0;
+	switch (_bitsPerPixel) {
+	case 8:     nChannels = 1;      break;
+	case 24:    nChannels = 3;      break;
+	case 32:    nChannels = 4;      break;
+	default:
+		ofLog(OF_LOG_WARNING, "bitsPerPixel should be 8, 24 or 32. skipping frame");
+		return;
+		break;
+	}
+
+	unsigned char * temp = new unsigned char[w * h * nChannels];
+	memcpy(temp, px, w * h * nChannels);
+	ofxGifFrame * gifFrame = ofxGifEncoder::createGifFrame(temp, w, h, _bitsPerPixel, tempDuration);
+	frames.push_back(gifFrame);
 }
 
 void ofxGifEncoder::setNumColors(int _nColors){

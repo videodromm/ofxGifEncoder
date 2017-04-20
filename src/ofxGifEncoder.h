@@ -44,7 +44,8 @@ class ofxGifEncoder: public ofThread {
         
         // if no duration is specified, we'll use default (from setup())
         void addFrame(ofImage & image, float duration = 0.f);        
-        void addFrame(unsigned char * px, int _w, int _h, int _bitsPerPixel = 24, float duration = 0.f);
+		void addFrame(unsigned char * px, int _w, int _h, int _bitsPerPixel = 24, float duration = 0.f);
+		void addFramePx(ofPixels * px, int _w, int _h, int _bitsPerPixel = 24, float duration = 0.f);
 
         static ofxGifFrame * createGifFrame(unsigned char * px, int _w, int _h, int _bitsPerPixel = 24, float duration = 0.1f);
         void save(string _fileName = "test.gif" );
